@@ -25,7 +25,7 @@
   margin: auto;
   padding: 0;
   width: 90%;
-  padding-bottom: 10px;
+  max-width: 1200px;
 }
 
 .modal {
@@ -56,6 +56,12 @@
   height: 80px;
   padding: 2px 2px;
   opacity: 0.7;
+  cursor: pointer;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
 }
 
 .grid-item:hover {
@@ -104,57 +110,6 @@ h1 {
   left: 18px;
   color: white;  
   font-size: 18px;
-}
-
-#thumbnail-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
-.thumbBtns {
-  font-size: 30px;
-  font-weight: bold;
-  margin: 12px;
-  cursor: pointer;
-}
-
-.thumbBtns:active{
-  opacity: 0.6;
-  user-select: none;
-}
-
-.thumbBtns:hover{
-  opacity: 0.6;
-  user-select: none;
-  color: green;
-}
-
-.thumbnail-img {
-  width: 75px;
-  height: 75px;
-  opacity: 0.6;
-  cursor: pointer;
-  user-select: none;
-  -moz-user-select: none;
-  -webkit-user-drag: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-}
-
-.thumbnail-img:hover{
-  opacity: 1;
-  border: 1px solid white;
-}
-
-.selected {
-  opacity: 1;
-  border: 1px solid white;
-}
-
-#arrows {
-  display: flex;
-  padding: 10px;
 }
 
 .close {

@@ -1,23 +1,17 @@
 
 const apiKey = 'be28fab2070ac5552f52ebb195b7a44d'
-const photosetID = '72157678202991065' 
+const photosetID = '72157694819523664'
 const userID = '38042235@N02'
+
 
 var request = new XMLHttpRequest();
 const photoStore = []
 var currentImage = {}
 var currentIndex = 0
-var thumbIndex = 0
 
 var currentImageElement = document.getElementById('current-image')
 var gridContainer = document.getElementById('grid-container')
 var title = document.getElementById('title')
-var thumb1 = document.getElementById('thumb1')
-var thumb2 = document.getElementById('thumb2')
-var thumb3 = document.getElementById('thumb3')
-var thumb4 = document.getElementById('thumb4')
-var thumbBack = document.getElementById('thumbBack')
-var thumbForward = document.getElementById('thumbForward')
 const thumbs = document.querySelectorAll('.thumbnail-img')
 
 const setSelected = () => {
@@ -38,17 +32,6 @@ const closeModal = () => {
   document.getElementById('myModal').style.display = "none";
 }
 
-const setThumbnails = () => {
-  thumb1.setAttribute("src", photoStore[thumbIndex].thumb)
-  thumb2.setAttribute("src", photoStore[thumbIndex+1].thumb)
-  thumb3.setAttribute("src", photoStore[thumbIndex+2].thumb)
-  thumb4.setAttribute("src", photoStore[thumbIndex+3].thumb)
-  thumb1.setAttribute("value", thumbIndex)
-  thumb2.setAttribute("value", thumbIndex+1)
-  thumb3.setAttribute("value", thumbIndex+2)
-  thumb4.setAttribute("value", thumbIndex+3)
-}
-
 const handleThumbClick = (thumb) => {
   currentIndex = parseInt(thumb.getAttribute('value'))
   console.log(`what is currentIndex: `, currentIndex)  
@@ -66,7 +49,7 @@ function reqListener() {
       index: i,
       title: photos[i].getAttribute('title'),
       thumb,
-      href: buildPhotoURL(photos[i], 'c')
+      href: buildPhotoURL(photos[i], 'b')
     }
     var gridImage = document.createElement('img')
     gridImage.src = thumb
@@ -86,7 +69,6 @@ function reqListener() {
   }))
   currentImage = photoStore[0]
   currentImageElement.setAttribute("src", currentImage.href)
-  setThumbnails()
   title.innerText = currentImage.title
   console.log(`what is currentImage: `, currentImage)
 }
@@ -110,20 +92,6 @@ forward.addEventListener('click', function() {
 thumbs.forEach((thumb) => thumb.addEventListener('click', (e) => {
   handleThumbClick(thumb)
 }))
-
-thumbBack.addEventListener('click', function() {
-  if (thumbIndex > 0) {
-    thumbIndex -= 1
-    setThumbnails()
-  }   
-})
-
-thumbForward.addEventListener('click', function() {
-  if (thumbIndex < photoStore.length-4) {
-    thumbIndex += 1
-    setThumbnails()
-  }
-})
 
 document.onkeydown = function (event) { 
   if (event.keyCode == '37'){
