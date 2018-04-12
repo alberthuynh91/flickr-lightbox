@@ -1,6 +1,7 @@
 
-const api_key = 'be28fab2070ac5552f52ebb195b7a44d'
-const secret = 'e2c04416ed77a019'
+const apiKey = 'be28fab2070ac5552f52ebb195b7a44d'
+const photosetID = '72157678202991065' 
+const userID = '38042235@N02'
 
 var request = new XMLHttpRequest();
 const photoStore = []
@@ -8,7 +9,6 @@ var currentImage = {}
 var currentIndex = 0
 var thumbIndex = 0
 
-var forward = document.getElementById('forward')
 var currentImageElement = document.getElementById('current-image')
 var gridContainer = document.getElementById('grid-container')
 var title = document.getElementById('title')
@@ -132,7 +132,6 @@ document.onkeydown = function (event) {
       currentIndex -= 1 
       setSelected()
     }
-    
   } else if (event.keyCode == '39') {
     event.preventDefault(); 
     if (currentIndex < photoStore.length-1) {
@@ -142,7 +141,7 @@ document.onkeydown = function (event) {
   }
 }
 
-request.open('GET', 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=be28fab2070ac5552f52ebb195b7a44d&photoset_id=72157678202991065&user_id=38042235@N02')
+request.open('GET', 'https://api.flickr.com/services/rest/?method=flickr.photosets.getPhotos&api_key=' + apiKey + '&photoset_id=' + photosetID + '&user_id=' + userID)
 request.send()
 
 request.onreadystatechange = function() {

@@ -1,3 +1,23 @@
+@media only screen and (max-width: 699px) {
+  #grid-container {
+    max-width: 336px;
+    justify-content: flex-start;
+    padding: 0px;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .modal-content {
+    min-width: 700px;
+  }
+
+  #grid-container {
+    min-width: 700px;
+    padding: 25px;
+    background-color: #9595951a;
+  }
+}
+
 /* Modal Styles */
 .modal-content {
   position: relative;
@@ -6,7 +26,6 @@
   padding: 0;
   width: 90%;
   padding-bottom: 10px;
-  min-width: 700px;
 }
 
 .modal {
@@ -30,8 +49,6 @@
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  background-color: #9595951a;
-  padding: 25px;
 }
 
 .grid-item {
@@ -89,7 +106,7 @@ h1 {
   font-size: 18px;
 }
 
-#thumbnails {
+#thumbnail-container {
   display: flex;
   flex-direction: row;
   align-items: center;
