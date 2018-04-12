@@ -2,17 +2,16 @@
 const apiKey = 'be28fab2070ac5552f52ebb195b7a44d'
 const photosetID = '72157654805764758'
 const userID = '38042235@N02'
-
-
-var request = new XMLHttpRequest();
 const photoStore = []
 var currentImage = {}
 var currentIndex = 0
-
+var request = new XMLHttpRequest()
+const observer = lozad()
 var currentImageElement = document.getElementById('current-image')
 var gridContainer = document.getElementById('grid-container')
 var title = document.getElementById('title')
 const thumbs = document.querySelectorAll('.thumbnail-img')
+
 
 const setSelected = () => {
   const { href, title } = currentImage
@@ -54,10 +53,11 @@ function reqListener() {
     }
     var gridImage = document.createElement('img')
     gridImage.src = 'placeholder.jpg'
-    gridImage.className = "grid-item"
+    gridImage.className = "grid-item lozad"
     gridImage.id = i
-    gridImage.setAttribute('data-echo', thumb)
+    gridImage.setAttribute('data-src', thumb)
     gridContainer.appendChild(gridImage)
+    observer.observe()
   }
   const gridItems = document.querySelectorAll('.grid-item')
   const handleGridClick = (item) => {
