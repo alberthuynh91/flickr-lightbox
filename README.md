@@ -10,7 +10,7 @@ open index.html
 ```
 or
 
-[VIEW HERE](https://github.com/alberthuynh91/flickr-lightbox)
+[VIEW HERE](https://alberthuynh91.github.io/flickr-lightbox/)
 ### Technologies Used
 
 - Javascript
