@@ -12,7 +12,6 @@ var gridContainer = document.getElementById('grid-container')
 var title = document.getElementById('title')
 const thumbs = document.querySelectorAll('.thumbnail-img')
 
-
 const setSelected = () => {
   const { href, title } = currentImage
   currentImage = photoStore[currentIndex]
@@ -30,14 +29,6 @@ const openModal = () => {
 
 const closeModal = () => {
   document.getElementById('myModal').style.display = "none";
-}
-
-const handleThumbClick = (thumb) => {
-  currentIndex = parseInt(thumb.getAttribute('value'))
-  console.log(`what is currentIndex: `, currentIndex)  
-  currentImageElement.setAttribute("src", photoStore[currentIndex].href)
-  title.innerText = photoStore[currentIndex].title
-  openModal()
 }
 
 function reqListener() {
@@ -72,7 +63,6 @@ function reqListener() {
   currentImage = photoStore[0]
   currentImageElement.setAttribute("src", currentImage.href)
   title.innerText = currentImage.title
-  console.log(`what is currentImage: `, currentImage)
 }
 
 request.addEventListener('load', reqListener);
@@ -90,10 +80,6 @@ forward.addEventListener('click', function() {
     setSelected()
   }
 });
-
-thumbs.forEach((thumb) => thumb.addEventListener('click', (e) => {
-  handleThumbClick(thumb)
-}))
 
 document.onkeydown = function (event) { 
   if (event.keyCode == '37'){
@@ -117,7 +103,6 @@ request.send()
 request.onreadystatechange = function() {
   if(request.readyState === 4) {
     if(request.status === 200) { 
-      // grid.innerText = request.responseText;
     } else {
       gridContainer.innerText = 'An error occurred during your request: ' +  request.status + ' ' + request.statusText;
     } 

@@ -42,6 +42,8 @@
   opacity: 1;
 }
 
+
+
 /* Grid Styles */
 #grid-container {
   width: 756px;
@@ -154,3 +156,4 @@ h1 {
 .next:hover {
   background-color: rgba(0, 0, 0, 0.8);
 }
+
