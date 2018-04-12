@@ -5,10 +5,8 @@
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='shortcut icon' href='favicon.ico'>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.min.css">
   </head>
-
   <body>
     <div id="myModal" class="modal">
       <span class="close cursor" onclick="closeModal()">&times;</span>
@@ -17,8 +15,8 @@
               <div class="title">
                 <div id="title"></div>
               </div>
-              <div class="currentImage">
-                <img id="currentImg" src="http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg">                
+              <div class="current-image-container">
+                <img id="current-image" src="http://hdimages.org/wp-content/uploads/2017/03/placeholder-image4.jpg">                
               </div>
               <div id="thumbnails">
                 <span id="thumbBack" class="thumbBtns">&#10094;</span>
@@ -33,13 +31,9 @@
         <a id="forward" class="next">&#10095;</a>
       </div>
     </div>
-
     <h1>Photo Grid</h1>
-    <div id="grid">
-    </div>
-
-    <script src="lightbox.js">
-    </script>
+    <div id="grid-container"></div>
+    <script src="lightbox.min.js"></script>
   </body>
 
 </html>

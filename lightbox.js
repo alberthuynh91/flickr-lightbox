@@ -4,13 +4,13 @@ const secret = 'e2c04416ed77a019'
 
 var request = new XMLHttpRequest();
 const photoStore = []
-var currentImg = {}
+var currentImage = {}
 var currentIndex = 0
 var thumbIndex = 0
 
 var forward = document.getElementById('forward')
-var currentImgElement = document.getElementById('currentImg')
-var grid = document.getElementById('grid')
+var currentImageElement = document.getElementById('current-image')
+var gridContainer = document.getElementById('grid-container')
 var title = document.getElementById('title')
 var thumb1 = document.getElementById('thumb1')
 var thumb2 = document.getElementById('thumb2')
@@ -21,9 +21,9 @@ var thumbForward = document.getElementById('thumbForward')
 const thumbs = document.querySelectorAll('.thumbnail-img')
 
 const setSelected = () => {
-  currentImg = photoStore[currentIndex]
-  currentImgElement.setAttribute("src", currentImg.href)
-  title.innerText = currentImg.title
+  currentImage = photoStore[currentIndex]
+  currentImageElement.setAttribute("src", currentImage.href)
+  title.innerText = currentImage.title
 }
 
 const buildPhotoURL = (photo, size) => {
@@ -52,7 +52,7 @@ const setThumbnails = () => {
 const handleThumbClick = (thumb) => {
   currentIndex = parseInt(thumb.getAttribute('value'))
   console.log(`what is currentIndex: `, currentIndex)  
-  currentImgElement.setAttribute("src", photoStore[currentIndex].href)
+  currentImageElement.setAttribute("src", photoStore[currentIndex].href)
   title.innerText = photoStore[currentIndex].title
   openModal()
 }
@@ -72,23 +72,23 @@ function reqListener() {
     gridImage.src = thumb
     gridImage.className = "grid-item"
     gridImage.id = i
-    grid.appendChild(gridImage)
+    gridContainer.appendChild(gridImage)
   }
   const gridItems = document.querySelectorAll('.grid-item')
   const handleGridClick = (item) => {
     currentIndex = parseInt(item.id)
     console.log(`what is currentIndex: `, currentIndex)  
-    currentImgElement.setAttribute("src", photoStore[currentIndex].href)
+    currentImageElement.setAttribute("src", photoStore[currentIndex].href)
     openModal()
   }
   gridItems.forEach((item) => item.addEventListener('click', (e) => {
     handleGridClick(item)
   }))
-  currentImg = photoStore[0]
-  currentImgElement.setAttribute("src", currentImg.href)
+  currentImage = photoStore[0]
+  currentImageElement.setAttribute("src", currentImage.href)
   setThumbnails()
-  title.innerText = currentImg.title
-  console.log(`what is currentImg: `, currentImg)
+  title.innerText = currentImage.title
+  console.log(`what is currentImage: `, currentImage)
 }
 
 request.addEventListener('load', reqListener);
@@ -150,7 +150,7 @@ request.onreadystatechange = function() {
     if(request.status === 200) { 
       // grid.innerText = request.responseText;
     } else {
-      grid.innerText = 'An error occurred during your request: ' +  request.status + ' ' + request.statusText;
+      gridContainer.innerText = 'An error occurred during your request: ' +  request.status + ' ' + request.statusText;
     } 
   }
 }
