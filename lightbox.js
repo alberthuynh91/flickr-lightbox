@@ -1,6 +1,6 @@
 
 const apiKey = 'be28fab2070ac5552f52ebb195b7a44d'
-const photosetID = '72157694819523664'
+const photosetID = '72157654805764758'
 const userID = '38042235@N02'
 
 
@@ -15,9 +15,10 @@ var title = document.getElementById('title')
 const thumbs = document.querySelectorAll('.thumbnail-img')
 
 const setSelected = () => {
+  const { href, title } = currentImage
   currentImage = photoStore[currentIndex]
-  currentImageElement.setAttribute("src", currentImage.href)
-  title.innerText = currentImage.title
+  currentImageElement.setAttribute("src", href)
+  title.innerText = title
 }
 
 const buildPhotoURL = (photo, size) => {
@@ -52,9 +53,10 @@ function reqListener() {
       href: buildPhotoURL(photos[i], 'b')
     }
     var gridImage = document.createElement('img')
-    gridImage.src = thumb
+    gridImage.src = 'placeholder.jpg'
     gridImage.className = "grid-item"
     gridImage.id = i
+    gridImage.setAttribute('data-echo', thumb)
     gridContainer.appendChild(gridImage)
   }
   const gridItems = document.querySelectorAll('.grid-item')
