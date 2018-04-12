@@ -39,7 +39,7 @@ function reqListener() {
       href: buildPhotoURL(photos[i], 'b')
     }
     var gridItem = document.createElement('div');
-    gridItem.innerHTML = '<a href="#open-modal"><img id=' + i + ' data-src=' + thumb + ' class="grid-item lozad" src="placeholder.jpg"></a>'
+    gridItem.innerHTML = '<a href="#open-modal"><img id=' + i + ' data-src=' + thumb + ' class="grid-item lozad" src="./images/placeholder.jpg"></a>'
     gridContainer.appendChild(gridItem)
     observer.observe()
   }
