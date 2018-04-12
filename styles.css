@@ -28,8 +28,7 @@
   max-width: 1200px;
 }
 
-.modal {
-  display: none;
+.modal-window {
   position: fixed;
   z-index: 1;
   padding-top: 50px;
@@ -39,9 +38,34 @@
   height: 100%;
   overflow: auto;
   background-color: black;
-  opacity: 1;
+  z-index: 999;
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: all 0.6s;
+  -moz-transition: all 0.6s;
+  transition: all 0.6s;
 }
 
+.modal-close {
+  color: #ffffff;
+  line-height: 50px;
+  font-size: 80%;
+  right: 0;
+  text-align: center;
+  top: 0;
+  width: 70px;
+  text-decoration: none;
+}
+
+.modal-close:hover {
+  color: #ffffff;
+}
+
+
+.modal-window:target {
+  opacity: 1;
+  pointer-events: auto;
+}
 
 
 /* Grid Styles */

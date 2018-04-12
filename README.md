@@ -24,3 +24,5 @@ or
 - Reduced asset sizes with minification of js and css files
 - Did image compression on placeholder images drastically reducing file size
 - Thumbnails being loaded are actually thumbnail size (75x75) taken from Flickr API
+- Allows the use of left and right arrow to change photos. 
+- Pressing ESC closes lightbox

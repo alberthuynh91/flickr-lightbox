@@ -12,23 +12,19 @@ var gridContainer = document.getElementById('grid-container')
 var title = document.getElementById('title')
 const thumbs = document.querySelectorAll('.thumbnail-img')
 
-const setSelected = () => {
-  const { href, title } = currentImage
+const setActiveImage = () => {
   currentImage = photoStore[currentIndex]
-  currentImageElement.setAttribute("src", href)
-  title.innerText = title
+  currentImageElement.setAttribute("src", currentImage.href)
+  title.innerText = currentImage.title
+}
+
+const handleGridClick = ({id}) => {
+  currentIndex = parseInt(id)
+  setActiveImage()
 }
 
 const buildPhotoURL = (photo, size) => {
   return 'https://c1.staticflickr.com/' + photo.getAttribute('farm') + '/' + photo.getAttribute('server') + '/' + photo.id + '_' + photo.getAttribute('secret') + '_' + size + '.jpg'
-}
-
-const openModal = () => {
-  document.getElementById('myModal').style.display = "block";
-}
-
-const closeModal = () => {
-  document.getElementById('myModal').style.display = "none";
 }
 
 function reqListener() {
@@ -42,27 +38,16 @@ function reqListener() {
       thumb,
       href: buildPhotoURL(photos[i], 'b')
     }
-    var gridImage = document.createElement('img')
-    gridImage.src = 'placeholder.jpg'
-    gridImage.className = "grid-item lozad"
-    gridImage.id = i
-    gridImage.setAttribute('data-src', thumb)
-    gridContainer.appendChild(gridImage)
+    var gridItem = document.createElement('div');
+    gridItem.innerHTML = '<a href="#open-modal"><img id=' + i + ' data-src=' + thumb + ' class="grid-item lozad" src="placeholder.jpg"></a>'
+    gridContainer.appendChild(gridItem)
     observer.observe()
   }
   const gridItems = document.querySelectorAll('.grid-item')
-  const handleGridClick = (item) => {
-    currentIndex = parseInt(item.id)
-    console.log(`what is currentIndex: `, currentIndex)  
-    currentImageElement.setAttribute("src", photoStore[currentIndex].href)
-    openModal()
-  }
   gridItems.forEach((item) => item.addEventListener('click', (e) => {
     handleGridClick(item)
   }))
-  currentImage = photoStore[0]
-  currentImageElement.setAttribute("src", currentImage.href)
-  title.innerText = currentImage.title
+  setActiveImage()
 }
 
 request.addEventListener('load', reqListener);
@@ -70,30 +55,33 @@ request.addEventListener('load', reqListener);
 back.addEventListener('click', function() {
   if (currentIndex > 0) {
     currentIndex -= 1
-    setSelected()  
+    setActiveImage()  
   }
 });
 
 forward.addEventListener('click', function() {
   if (currentIndex < photoStore.length-1) {
     currentIndex += 1
-    setSelected()
+    setActiveImage()
   }
 });
 
 document.onkeydown = function (event) { 
   if (event.keyCode == '37'){
-    event.preventDefault();
+    event.preventDefault()
     if (currentIndex > 0) {
       currentIndex -= 1 
-      setSelected()
+      setActiveImage()
     }
   } else if (event.keyCode == '39') {
-    event.preventDefault(); 
+    event.preventDefault()
     if (currentIndex < photoStore.length-1) {
       currentIndex += 1
-      setSelected()
+      setActiveImage()
     }
+  } else if (event.keyCode == '27') {
+    event.preventDefault()
+    window.location.href = location.pathname + '#modal-close'
   }
 }
 
